@@ -9,7 +9,7 @@
   [![Flutter](https://img.shields.io/badge/Flutter-3.38.5-02569B?logo=flutter)](https://flutter.dev)
   [![Dart](https://img.shields.io/badge/Dart-3.0-0175C2?logo=dart)](https://dart.dev)
   [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-  [![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-blue.svg)](https://github.com/yourusername/smart_food_scanner)
+  [![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-blue.svg)](https://github.com/Fahad3242/Smart-food-scanner)
 </div>
 
 ---
@@ -66,8 +66,8 @@
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/smart_food_scanner.git
-   cd smart_food_scanner
+   git clone https://github.com/Fahad3242/Smart-food-scanner.git
+   cd Smart-food-scanner
    ```
 
 2. **Install dependencies**
@@ -285,11 +285,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-**Project Link**: [https://github.com/yourusername/smart_food_scanner](https://github.com/yourusername/smart_food_scanner)
+**Project Link**: [https://github.com/Fahad3242/Smart-food-scanner](https://github.com/Fahad3242/Smart-food-scanner)
 
-**Developer**: Your Name
-- Email: your.email@example.com
-- GitHub: [@yourusername](https://github.com/yourusername)
+**Developer**: Fahad
+- Email: sheikhshaikhfahad@gmail.com
+- GitHub: [@Fahad3242](https://github.com/Fahad3242)
 
 ---
 

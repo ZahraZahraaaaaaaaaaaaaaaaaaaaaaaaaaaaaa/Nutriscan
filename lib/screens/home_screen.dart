@@ -694,6 +694,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         ],
       ),
       child: FloatingActionButton(
+        heroTag: 'fab_${icon.codePoint}', // Unique tag for each button
         onPressed: onPressed,
         backgroundColor: AppTheme.backgroundColor,
         elevation: 0,

@@ -68,22 +68,29 @@ class AuthProvider with ChangeNotifier {
     }
 
     try {
+      debugPrint('Starting Google Sign In...');
       final GoogleSignInAccount? googleUser = await _googleSignIn!.signIn();
       if (googleUser == null) {
+        debugPrint('User cancelled sign in');
         return false; // User cancelled
       }
 
+      debugPrint('Getting Google authentication...');
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
 
+      debugPrint('Creating Firebase credential...');
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
+      debugPrint('Signing in to Firebase...');
       final userCredential = await _auth!.signInWithCredential(credential);
       _user = userCredential.user;
       _isGuest = false;
+
+      debugPrint('Sign in successful! User: ${_user?.email}');
 
       // Save auth state
       final prefs = await SharedPreferences.getInstance();

@@ -6,17 +6,10 @@ class PersonalizedRecommendation {
   final String message;
   final RecommendationType type;
 
-  PersonalizedRecommendation({
-    required this.message,
-    required this.type,
-  });
+  PersonalizedRecommendation({required this.message, required this.type});
 }
 
-enum RecommendationType {
-  positive,
-  warning,
-  negative,
-}
+enum RecommendationType { positive, warning, negative }
 
 class HealthVerdict {
   final String verdict;
@@ -53,7 +46,12 @@ class HealthAnalyzer {
 
     // If no profile exists, use default analysis
     if (profile == null || !profile.isComplete) {
-      return _generateDefaultVerdict(nutrition, warnings, suggestions, verdictType);
+      return _generateDefaultVerdict(
+        nutrition,
+        warnings,
+        suggestions,
+        verdictType,
+      );
     }
 
     // Analyze based on profile diseases
@@ -77,7 +75,9 @@ class HealthAnalyzer {
     if (profile.hasHeartDisease || profile.hasHighCholesterol) {
       if (nutrition.saturatedFat != null && nutrition.saturatedFat! > 3) {
         warnings.add('High saturated fat');
-        suggestions.add('Choose heart-healthy alternatives with less saturated fat');
+        suggestions.add(
+          'Choose heart-healthy alternatives with less saturated fat',
+        );
         if (verdictType != VerdictType.bad) verdictType = VerdictType.warning;
         personalizedRec = PersonalizedRecommendation(
           message: 'High saturated fat — limit for heart health',
@@ -85,18 +85,18 @@ class HealthAnalyzer {
         );
       } else if (nutrition.saturatedFat != null &&
           nutrition.saturatedFat! <= 2) {
-        if (personalizedRec == null) {
-          personalizedRec = PersonalizedRecommendation(
-            message: 'Suitable for heart health (low saturated fat)',
-            type: RecommendationType.positive,
-          );
-        }
+        personalizedRec ??= PersonalizedRecommendation(
+          message: 'Suitable for heart health (low saturated fat)',
+          type: RecommendationType.positive,
+        );
       }
     }
 
     if (profile.hasObesity || profile.goal == HealthGoal.loseWeight) {
       if (nutrition.calories != null) {
-        final dailyCalories = CalorieCalculator.calculateRecommendedCalories(profile);
+        final dailyCalories = CalorieCalculator.calculateRecommendedCalories(
+          profile,
+        );
         if (dailyCalories != null) {
           final percentage = CalorieCalculator.getDailyCaloriePercentage(
             nutrition.calories!,
@@ -105,12 +105,15 @@ class HealthAnalyzer {
           if (percentage != null && percentage > 20) {
             warnings.add('High calorie content');
             suggestions.add('Consider portion size for weight loss goal');
-            if (verdictType != VerdictType.bad) verdictType = VerdictType.warning;
+            if (verdictType != VerdictType.bad) {
+              verdictType = VerdictType.warning;
+            }
             personalizedRec = PersonalizedRecommendation(
               message: 'High calories — limit portion for weight loss goal',
               type: RecommendationType.warning,
             );
-            portionGuidance = 'This product provides ~${percentage.round()}% of your daily calorie intake';
+            portionGuidance =
+                'This product provides ~${percentage.round()}% of your daily calorie intake';
           }
         }
       }
@@ -118,12 +121,10 @@ class HealthAnalyzer {
 
     if (profile.goal == HealthGoal.gainWeight) {
       if (nutrition.calories != null && nutrition.calories! > 300) {
-        if (personalizedRec == null) {
-          personalizedRec = PersonalizedRecommendation(
-            message: 'Good calorie content for weight gain goal',
-            type: RecommendationType.positive,
-          );
-        }
+        personalizedRec ??= PersonalizedRecommendation(
+          message: 'Good calorie content for weight gain goal',
+          type: RecommendationType.positive,
+        );
       }
     }
 
@@ -154,7 +155,9 @@ class HealthAnalyzer {
 
     // Generate portion and frequency guidance
     if (nutrition.calories != null) {
-      final dailyCalories = CalorieCalculator.calculateRecommendedCalories(profile);
+      final dailyCalories = CalorieCalculator.calculateRecommendedCalories(
+        profile,
+      );
       if (dailyCalories != null) {
         final percentage = CalorieCalculator.getDailyCaloriePercentage(
           nutrition.calories!,

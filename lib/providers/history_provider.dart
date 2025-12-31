@@ -12,7 +12,8 @@ class HistoryProvider with ChangeNotifier {
 
   List<Product> get history => _history;
   List<Product> get favorites => _favorites;
-  List<String> get favoriteBarcodes => _favorites.map((p) => p.barcode).toList();
+  List<String> get favoriteBarcodes =>
+      _favorites.map((p) => p.barcode).toList();
 
   HistoryProvider() {
     _loadData();

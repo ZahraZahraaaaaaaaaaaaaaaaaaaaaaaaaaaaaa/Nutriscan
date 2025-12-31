@@ -333,6 +333,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const SnackBar(
             content: Text('Signed in successfully! Your data is now synced.'),
             backgroundColor: AppTheme.successGreen,
+            duration: Duration(seconds: 3),
+          ),
+        );
+      } else {
+        // Show error message if sign-in failed
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Sign in failed. Please try again.'),
+            backgroundColor: AppTheme.errorRed,
+            duration: Duration(seconds: 3),
           ),
         );
       }
